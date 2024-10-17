@@ -31,6 +31,15 @@ public abstract class AbstractGenerateFile {
 				fileGenerateBean.getFileName(),fileNameSufixo,fileNameSufixo);
 	}
 	
+	public String getTextBlock(FileGenerateBean fileGenerateBean) {
+		return """
+		 angular
+				.module('cw.%s.%s')
+		""".formatted(
+				fileGenerateBean.getModuleName(), 
+				fileGenerateBean.getFileName());
+	}
+	
     public String separeteByHifen(String input) {
         String result = input.replaceAll("([a-z])([A-Z])", "$1-$2");
         
