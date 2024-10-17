@@ -3,6 +3,9 @@ package com.frontcodegenartor.constants;
 import java.util.function.Consumer;
 
 import com.frontcodegenartor.bean.FileGenerateBean;
+import com.frontcodegenartor.defaultfileextension.FileNameDefaultExtensionFormController;
+import com.frontcodegenartor.defaultfileextension.FileNameDefaultExtensionFormHtml;
+import com.frontcodegenartor.defaultfileextension.FileNameDefaultExtensionFormService;
 import com.frontcodegenartor.defaultfileextension.FileNameDefaultExtensionListingController;
 import com.frontcodegenartor.defaultfileextension.FileNameDefaultExtensionListingHtml;
 import com.frontcodegenartor.defaultfileextension.FileNameDefaultExtensionListingService;
@@ -18,7 +21,10 @@ public enum EnumDefaultFileNameExtension {
 	MODULE(new FileNameDefaultExtensionModule()::generateFile),
 	LISTING_CONTROLLER(new FileNameDefaultExtensionListingService()::generateFile),
 	LISTING_SERVICE(new FileNameDefaultExtensionListingController()::generateFile),
-	LISTING_HTML(new FileNameDefaultExtensionListingHtml()::generateFile);
+	LISTING_HTML(new FileNameDefaultExtensionListingHtml()::generateFile),
+	FORM_CONTROLLER(new FileNameDefaultExtensionFormController()::generateFile),
+	FORM_SERVICE(new FileNameDefaultExtensionFormService()::generateFile),
+	FORM_HTML(new FileNameDefaultExtensionFormHtml()::generateFile);
 	
 	private final Consumer<FileGenerateBean> consumer;
 	

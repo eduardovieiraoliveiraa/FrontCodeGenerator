@@ -13,7 +13,9 @@ public abstract class AbstractGenerateFile {
 	
 	public abstract String getExtensionFile();
 	
-	public abstract String getSufixo();
+	public String getSufixo() {
+		return "";
+	};
 	
 	public String getFileNameSufixo(FileGenerateBean fileGenerateBean) {
 		return fileGenerateBean.getFileName().concat(getSufixo());
@@ -45,6 +47,21 @@ public abstract class AbstractGenerateFile {
         
         return result.toLowerCase();
     }
+    
+    protected void createSubFile(FileGenerateBean fileGenerateBean,String nameNewFolder) {
+		String fileName = nameNewFolder.concat(getExtensionFile());
+        Path pastaPath = Path.of(fileGenerateBean.getFolderName().concat("\\").concat(nameNewFolder));
+        Path arquivoPath = pastaPath.resolve(fileName);
+
+        try {
+            if (Files.notExists(pastaPath)) 
+                Files.createDirectories(pastaPath);
+            
+            Files.writeString(arquivoPath, fileGenerateBean.getContent(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
 	
 	protected void createFile(FileGenerateBean fileGenerateBean) {
 		String fileName = fileGenerateBean.getFileName().concat(getExtensionFile());
