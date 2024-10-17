@@ -7,7 +7,43 @@ public class FileNameDefaultExtensionListingController extends AbstractGenerateF
 
 	@Override
 	public void generateFile(FileGenerateBean fileGenerateBean) {
+		fileGenerateBean.setContent(generateContentListingService(fileGenerateBean));
 		
+		createSubFile(fileGenerateBean, "listagem");
+	}
+	
+	private String generateContentListingService(FileGenerateBean fileGenerateBean) {
+		return """
+(function () {
+	'use strict';
+				
+	%s
+        .controller('listagemController', listagemController);
+
+        listagemController.$inject = [
+        'listagemService',
+    ];
+
+    function listagemController(
+        listagemService,
+    ) {
+        var vm = this;
+
+        vm.getListaRegistros = listagemService.getListaRegistros;
+        vm.getTotalRecords = listagemService.getTotalRecords
+        vm.novo = listagemService.novo;
+        vm.editar = listagemService.editar;
+        vm.deletar = listagemService.deletar;
+        vm.fillListagem = listagemService.fillListagem;
+
+        activate();
+
+        function activate() {
+
+        }
+    }
+})();
+				""".formatted(getTextBlock(fileGenerateBean));
 	}
 
 	@Override
