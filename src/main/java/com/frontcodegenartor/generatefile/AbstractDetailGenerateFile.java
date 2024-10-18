@@ -28,6 +28,10 @@ public abstract class AbstractDetailGenerateFile extends AbstractGenerateFile{
     	return type.concat(firstTextLetterUpperCase(fileGenerateBean.getDetailName()));
     }
     
+	public String getDetailFileNameSufixo(FileGenerateBean fileGenerateBean, String type) {
+		return getDetailName(fileGenerateBean, type).concat(getSufixo());
+	}
+    
 	public String getFolderName(FileGenerateBean fileGenerateBean, String type) {
 		String folderNameDefault = fileGenerateBean.getFolderName()
 				.concat("\\form")
