@@ -17,6 +17,10 @@ public abstract class AbstractGenerateFile {
 		return "";
 	};
 	
+	public String firstTextLetterUpperCase(String text) {
+		return text.substring(0, 1).toUpperCase() + text.substring(1);
+	}
+	
 	public String getFileNameSufixo(FileGenerateBean fileGenerateBean) {
 		return fileGenerateBean.getFileName().concat(getSufixo());
 	}
@@ -33,17 +37,22 @@ public abstract class AbstractGenerateFile {
 				fileGenerateBean.getFileName(),fileNameSufixo,fileNameSufixo);
 	}
 	
-	public String getTextBlock(FileGenerateBean fileGenerateBean) {
+	public String getModuleTextBlock(FileGenerateBean fileGenerateBean) {
 		return """
 		 angular
-				.module('cw.%s.%s')
-		""".formatted(
+				.module('cw.%s.%s')""".formatted(
 				fileGenerateBean.getModuleName(), 
 				fileGenerateBean.getFileName());
 	}
 	
     public String separeteByHifen(String input) {
         String result = input.replaceAll("([a-z])([A-Z])", "$1-$2");
+        
+        return result.toLowerCase();
+    }
+    
+    public String separeteBySpace(String input) {
+        String result = input.replaceAll("([a-z])([A-Z])", "$1 $2");
         
         return result.toLowerCase();
     }

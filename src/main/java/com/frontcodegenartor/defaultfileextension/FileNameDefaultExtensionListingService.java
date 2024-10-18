@@ -72,7 +72,7 @@ public class FileNameDefaultExtensionListingService extends AbstractGenerateFile
 	}
 })();
 				""".formatted(
-						getTextBlock(fileGenerateBean),
+						getModuleTextBlock(fileGenerateBean),
 						fileGenerateBean.getFileName(),
 						fileGenerateBean.getFileName(),
 						fileGenerateBean.getFileName()

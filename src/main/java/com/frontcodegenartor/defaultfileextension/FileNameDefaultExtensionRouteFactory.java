@@ -79,8 +79,8 @@ public class FileNameDefaultExtensionRouteFactory extends AbstractGenerateFile{
 	
 		for (String entityName : fileGenerateBean.getDetails()) {
 			String minDetail = """
-								   '%s/%s/%s/listagem/listagem.min.js',
-								   '%s/%s/%s/dialog/dialog.min.js',
+								   '%s/%s/form/%s/listagem/listagem.min.js',
+								   '%s/%s/form/%s/dialog/dialog.min.js',
 					""".formatted(
 							fileGenerateBean.getModuleName(),fileGenerateBean.getFileName(),entityName,
 							fileGenerateBean.getModuleName(),fileGenerateBean.getFileName(),entityName

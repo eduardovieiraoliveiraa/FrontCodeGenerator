@@ -43,7 +43,7 @@ public class FileNameDefaultExtensionListingController extends AbstractGenerateF
         }
     }
 })();
-				""".formatted(getTextBlock(fileGenerateBean));
+				""".formatted(getModuleTextBlock(fileGenerateBean));
 	}
 
 	@Override
