@@ -1,5 +1,6 @@
 package com.frontcodegenartor.bean;
 
+import java.util.Collections;
 import java.util.List;
 
 public class FileGenerateBean {
@@ -33,6 +34,8 @@ public class FileGenerateBean {
 	}
 
 	public List<String> getDetails() {
+		if(details == null) return Collections.emptyList();
+		
 		return details;
 	}
 
