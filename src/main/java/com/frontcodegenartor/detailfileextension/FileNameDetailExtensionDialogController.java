@@ -5,17 +5,14 @@ import com.frontcodegenartor.generatefile.AbstractDetailGenerateFile;
 
 public class FileNameDetailExtensionDialogController extends AbstractDetailGenerateFile {
 
+	private static final String DIALOG = "dialog";
+
 	@Override
 	public void generateFile(FileGenerateBean fileGenerateBean) {
+		String folderName = getFolderName(fileGenerateBean, DIALOG);
+		String fileNameDetail = getDetailName(fileGenerateBean, DIALOG);
 		
-		String conteudo = "";
-		String folderNameDefault = fileGenerateBean.getFolderName().concat("//").concat(fileGenerateBean.getFileName())
-		.concat("//form").concat("//").concat(fileGenerateBean.getDetailName())
-		.concat("//dialog");
-		
-		fileGenerateBean.getDetailName().concat(getExtensionFile());
-		
-		createSubFileDetail(folderNameDefault, conteudo, getExtensionFile());
+		createSubFileDetail(folderName, "teste", fileNameDetail);
 	}
 
 	@Override
