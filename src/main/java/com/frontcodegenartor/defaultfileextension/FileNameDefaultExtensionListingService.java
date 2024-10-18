@@ -9,23 +9,29 @@ public class FileNameDefaultExtensionListingService extends AbstractGenerateFile
 	public void generateFile(FileGenerateBean fileGenerateBean) {
 		fileGenerateBean.setContent(generateContentListingService(fileGenerateBean));
 		
-		createSubFile(fileGenerateBean,"listagem", "listagem");
+		String firstTextLetterUpperCaseFileName = firstTextLetterUpperCase(fileGenerateBean.getFileName());
+		
+		String serviceName = "listagem".concat(firstTextLetterUpperCaseFileName);
+		
+		createSubFile(fileGenerateBean,"listagem", serviceName);
 	}
 	
 	private String generateContentListingService(FileGenerateBean fileGenerateBean) {
+		String firstTextLetterUpperCaseFileName = firstTextLetterUpperCase(fileGenerateBean.getFileName());
+		
 		return """
 (function () {
 	'use strict';
 				
 	%s
-		.service('listagemService', listagemService);			
+		.service('listagem%sService', listagem%sService);			
 		
-		listagemService.$inject = [
+		listagem%sService.$inject = [
 			'$state',
 			'%sResource'
 	];
 				
-	function listagemService(
+	function listagem%sService(
 		$state,
 		%sResource
 	) {
@@ -73,7 +79,11 @@ public class FileNameDefaultExtensionListingService extends AbstractGenerateFile
 })();
 				""".formatted(
 						getModuleTextBlock(fileGenerateBean),
+						firstTextLetterUpperCaseFileName,
+						firstTextLetterUpperCaseFileName,
+						firstTextLetterUpperCaseFileName,
 						fileGenerateBean.getFileName(),
+						firstTextLetterUpperCaseFileName,
 						fileGenerateBean.getFileName(),
 						fileGenerateBean.getFileName()
 						);

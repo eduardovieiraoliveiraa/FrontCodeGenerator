@@ -7,34 +7,41 @@ public class FileNameDefaultExtensionListingController extends AbstractGenerateF
 
 	@Override
 	public void generateFile(FileGenerateBean fileGenerateBean) {
-		fileGenerateBean.setContent(generateContentListingService(fileGenerateBean));
+		fileGenerateBean.setContent(generateContentListingController(fileGenerateBean));
 		
-		createSubFile(fileGenerateBean,"listagem", "listagem");
+		String firstTextLetterUpperCaseFileName = firstTextLetterUpperCase(fileGenerateBean.getFileName());
+		
+		String controllerName = "listagem".concat(firstTextLetterUpperCaseFileName);
+		
+		createSubFile(fileGenerateBean,"listagem", controllerName);
 	}
 	
-	private String generateContentListingService(FileGenerateBean fileGenerateBean) {
+	private String generateContentListingController(FileGenerateBean fileGenerateBean) {
+		String firstTextLetterUpperCaseFileName = firstTextLetterUpperCase(fileGenerateBean.getFileName());
+		
 		return """
 (function () {
 	'use strict';
 				
 	%s
-        .controller('listagemController', listagemController);
+        .controller('listagem%sController', listagem%sController);
 
-        listagemController.$inject = [
-        'listagemService',
+        listagem%sController.$inject = [
+        'listagem%sService',
     ];
 
-    function listagemController(
-        listagemService,
+    function listagem%sController(
+        listagem%sService,
     ) {
         var vm = this;
+		var service = listagem%sService;
 
-        vm.getListaRegistros = listagemService.getListaRegistros;
-        vm.getTotalRecords = listagemService.getTotalRecords
-        vm.novo = listagemService.novo;
-        vm.editar = listagemService.editar;
-        vm.deletar = listagemService.deletar;
-        vm.fillListagem = listagemService.fillListagem;
+        vm.getListaRegistros = service.getListaRegistros;
+        vm.getTotalRecords = service.getTotalRecords
+        vm.novo = service.novo;
+        vm.editar = service.editar;
+        vm.deletar = service.deletar;
+        vm.fillListagem = service.fillListagem;
 
         activate();
 
@@ -43,7 +50,15 @@ public class FileNameDefaultExtensionListingController extends AbstractGenerateF
         }
     }
 })();
-				""".formatted(getModuleTextBlock(fileGenerateBean));
+				""".formatted(getModuleTextBlock(fileGenerateBean),
+						firstTextLetterUpperCaseFileName,
+						firstTextLetterUpperCaseFileName,
+						firstTextLetterUpperCaseFileName,
+						firstTextLetterUpperCaseFileName,
+						firstTextLetterUpperCaseFileName,
+						firstTextLetterUpperCaseFileName,
+						firstTextLetterUpperCaseFileName
+						);
 	}
 
 	@Override
