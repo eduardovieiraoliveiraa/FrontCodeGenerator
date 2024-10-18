@@ -1,9 +1,9 @@
 package com.frontcodegenartor.detailfileextension;
 
 import com.frontcodegenartor.bean.FileGenerateBean;
-import com.frontcodegenartor.generatefile.AbstractGenerateFile;
+import com.frontcodegenartor.generatefile.AbstractDetailGenerateFile;
 
-public class FileNameDetailExtensionDialogService extends AbstractGenerateFile {
+public class FileNameDetailExtensionDialogService extends AbstractDetailGenerateFile {
 
 	@Override
 	public void generateFile(FileGenerateBean fileGenerateBean) {
