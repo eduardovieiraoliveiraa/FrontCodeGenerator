@@ -71,21 +71,6 @@ public abstract class AbstractGenerateFile {
             e.printStackTrace();
         }
 	}
-    
-    protected void createSubFileDetail(String folderName,String conteudo, String newFileName) {
-		String fileName = newFileName.concat(getExtensionFile());
-        Path pastaPath = Path.of(folderName);
-        Path arquivoPath = pastaPath.resolve(fileName);
-
-        try {
-            if (Files.notExists(pastaPath)) 
-                Files.createDirectories(pastaPath);
-            
-            Files.writeString(arquivoPath, conteudo, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-	}
 	
 	protected void createFile(FileGenerateBean fileGenerateBean) {
 		String fileName = fileGenerateBean.getFileName().concat(getExtensionFile());

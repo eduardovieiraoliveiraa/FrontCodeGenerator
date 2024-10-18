@@ -25,9 +25,14 @@ public abstract class AbstractDetailGenerateFile extends AbstractGenerateFile{
 	}
     
 	public String getFolderName(FileGenerateBean fileGenerateBean, String type) {
-		String folderNameDefault = fileGenerateBean.getFolderName().concat("//").concat(fileGenerateBean.getFileName())
-				.concat("//form").concat("//").concat(fileGenerateBean.getDetailName())
-				.concat("//"+type);
+		String folderNameDefault = fileGenerateBean.getFolderName()
+				.concat("\\")
+				.concat(fileGenerateBean.getFileName())
+				.concat("\\form")
+				.concat("\\")
+				.concat(fileGenerateBean.getDetailName())
+				.concat("\\")
+				.concat(type);
 		
 		return folderNameDefault;
 	};
