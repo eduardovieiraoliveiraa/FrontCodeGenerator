@@ -1,7 +1,5 @@
 package com.frontcodegenartor.constants;
 
-import java.util.function.Consumer;
-
 import com.frontcodegenartor.bean.FileGenerateBean;
 import com.frontcodegenartor.defaultfileextension.FileNameDefaultExtensionFormController;
 import com.frontcodegenartor.defaultfileextension.FileNameDefaultExtensionFormHtml;
@@ -14,7 +12,7 @@ import com.frontcodegenartor.defaultfileextension.FileNameDefaultExtensionResour
 import com.frontcodegenartor.defaultfileextension.FileNameDefaultExtensionRoute;
 import com.frontcodegenartor.defaultfileextension.FileNameDefaultExtensionRouteFactory;
 
-public enum EnumDefaultFileNameExtension {
+public enum EnumDefaultFileNameExtension implements FileNameExtension{
 	ROUTE(new FileNameDefaultExtensionRoute()::generateFile),
 	RESOURCE(new FileNameDefaultExtensionResource()::generateFile),
 	ROUTEFACTORY(new FileNameDefaultExtensionRouteFactory()::generateFile),
@@ -26,13 +24,14 @@ public enum EnumDefaultFileNameExtension {
 	FORM_SERVICE(new FileNameDefaultExtensionFormService()::generateFile),
 	FORM_HTML(new FileNameDefaultExtensionFormHtml()::generateFile);
 	
-	private final Consumer<FileGenerateBean> consumer;
-	
-	EnumDefaultFileNameExtension(Consumer<FileGenerateBean> consumer) {
-		this.consumer = consumer;
-	}
+    private final FileNameExtension fileNameExtension;
 
+    EnumDefaultFileNameExtension(FileNameExtension fileNameExtension) {
+        this.fileNameExtension = fileNameExtension;
+    }
+
+    @Override
 	public void generateFile(FileGenerateBean fileGenerateBean) {
-		consumer.accept(fileGenerateBean);
+		fileNameExtension.generateFile(fileGenerateBean);
 	};
 }

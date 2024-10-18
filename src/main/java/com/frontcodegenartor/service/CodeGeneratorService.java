@@ -1,9 +1,13 @@
 package com.frontcodegenartor.service;
 
+import java.util.Arrays;
+
 import org.springframework.stereotype.Service;
 
 import com.frontcodegenartor.bean.FileGenerateBean;
 import com.frontcodegenartor.constants.EnumDefaultFileNameExtension;
+import com.frontcodegenartor.constants.EnumDetailFileNameExtension;
+import com.frontcodegenartor.constants.FileNameExtension;
 import com.frontcodegenartor.record.CodeGenareteRecord;
 
 @Service
@@ -21,10 +25,17 @@ public class CodeGeneratorService {
 		fileGenerateBean.setSiglaPathModule(codeGenareteRecord.siglaPathModule().toLowerCase());
 		fileGenerateBean.setDetails(codeGenareteRecord.detailsName());
 		
-		for (EnumDefaultFileNameExtension enumFileNameExtension : EnumDefaultFileNameExtension.values()) {
-			enumFileNameExtension.generateFile(fileGenerateBean);
-		}
-		
+		generateFiles(fileGenerateBean, EnumDefaultFileNameExtension.values());
+		generateFiles(fileGenerateBean, EnumDetailFileNameExtension.values());
+	}
+	
+	private <E extends Enum<E>> void generateFiles(FileGenerateBean fileGenerateBean, E[] enumValues) {
+	    Arrays.stream(enumValues)
+	          .forEach(enumValue -> {
+	              if (enumValue instanceof FileNameExtension) {
+	                  ((FileNameExtension) enumValue).generateFile(fileGenerateBean);
+	              }
+	          });
 	}
 
 	private static String firstTextLetterLowerCase(String text) {

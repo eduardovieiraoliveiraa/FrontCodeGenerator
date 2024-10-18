@@ -33,16 +33,14 @@ public class FileNameDefaultExtensionFormService extends AbstractGenerateFile{
         '$stateParams',
         '$state',
         '%s',
-        'dcAlertService',
-        'dcDialogService'
+        'dcAlertService'
     ];
 
     function %s(
         $stateParams,
         $state,
         %s,
-        dcAlertService,
-        dcDialogService
+        dcAlertService
     ) {
         var model = { main: {} };
         var tabsConfig = {};
@@ -106,8 +104,7 @@ public class FileNameDefaultExtensionFormService extends AbstractGenerateFile{
                 model.main = {};
             }
         }
-
-
+        
 		%s
 
         function activate() {
