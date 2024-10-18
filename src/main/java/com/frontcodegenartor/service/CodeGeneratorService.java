@@ -26,7 +26,12 @@ public class CodeGeneratorService {
 		fileGenerateBean.setDetails(codeGenareteRecord.detailsName());
 		
 		generateFiles(fileGenerateBean, EnumDefaultFileNameExtension.values());
-		generateFiles(fileGenerateBean, EnumDetailFileNameExtension.values());
+		
+		for (String detailName : fileGenerateBean.getDetails()) {
+			fileGenerateBean.setDetailName(firstTextLetterLowerCase(detailName));
+			generateFiles(fileGenerateBean, EnumDetailFileNameExtension.values());
+		}
+		
 	}
 	
 	private <E extends Enum<E>> void generateFiles(FileGenerateBean fileGenerateBean, E[] enumValues) {

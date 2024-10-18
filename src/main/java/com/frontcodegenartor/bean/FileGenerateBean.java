@@ -10,6 +10,7 @@ public class FileGenerateBean {
 	private String content;
 	private String moduleName;
 	private String siglaPathModule;
+	private String detailName;
 
 	private List<String> details;
 
@@ -19,6 +20,14 @@ public class FileGenerateBean {
 
 	public String getModuleName() {
 		return moduleName;
+	}
+
+	public String getDetailName() {
+		return detailName;
+	}
+
+	public void setDetailName(String detailName) {
+		this.detailName = detailName;
 	}
 
 	public void setModuleName(String moduleName) {
@@ -34,8 +43,9 @@ public class FileGenerateBean {
 	}
 
 	public List<String> getDetails() {
-		if(details == null) return Collections.emptyList();
-		
+		if (details == null)
+			return Collections.emptyList();
+
 		return details;
 	}
 
