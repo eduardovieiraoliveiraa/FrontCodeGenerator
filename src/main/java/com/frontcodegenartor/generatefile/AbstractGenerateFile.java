@@ -57,8 +57,8 @@ public abstract class AbstractGenerateFile {
         return result.toLowerCase();
     }
     
-    protected void createSubFile(FileGenerateBean fileGenerateBean,String nameNewFolder) {
-		String fileName = nameNewFolder.concat(getExtensionFile());
+    protected void createSubFile(FileGenerateBean fileGenerateBean,String nameNewFolder, String newFileName) {
+		String fileName = newFileName.concat(getExtensionFile());
         Path pastaPath = Path.of(fileGenerateBean.getFolderName().concat("\\").concat(nameNewFolder));
         Path arquivoPath = pastaPath.resolve(fileName);
 

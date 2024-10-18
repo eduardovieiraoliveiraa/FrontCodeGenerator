@@ -9,16 +9,17 @@ public class FileNameDefaultExtensionFormService extends AbstractGenerateFile{
 
 	@Override
 	public void generateFile(FileGenerateBean fileGenerateBean) {
-		fileGenerateBean.setContent(generateContentForm(fileGenerateBean));
+		String fileName = firstTextLetterUpperCase(fileGenerateBean.getFileName());
+		String serviceName = "form".concat(fileName);
 		
-		createSubFile(fileGenerateBean, "form");
+		fileGenerateBean.setContent(generateContentForm(fileGenerateBean, fileName, serviceName));
+		
+		createSubFile(fileGenerateBean,"form", serviceName);
 	}
 	
-	private String generateContentForm(FileGenerateBean fileGenerateBean) {
-		String fileName = firstTextLetterUpperCase(fileGenerateBean.getFileName());
-		String serviceName = "form".concat(fileName).concat("Service");
-		
+	private String generateContentForm(FileGenerateBean fileGenerateBean, String fileName, String serviceName) {
 		String fileResource = new FileNameDefaultExtensionResource().getFileNameSufixo(fileGenerateBean);
+		serviceName = serviceName.concat(getSufixo());
 		
 		return """
 				(function () {

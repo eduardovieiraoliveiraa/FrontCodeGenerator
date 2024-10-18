@@ -9,7 +9,7 @@ public class FileNameDefaultExtensionListingController extends AbstractGenerateF
 	public void generateFile(FileGenerateBean fileGenerateBean) {
 		fileGenerateBean.setContent(generateContentListingService(fileGenerateBean));
 		
-		createSubFile(fileGenerateBean, "listagem");
+		createSubFile(fileGenerateBean,"listagem", "listagem");
 	}
 	
 	private String generateContentListingService(FileGenerateBean fileGenerateBean) {
