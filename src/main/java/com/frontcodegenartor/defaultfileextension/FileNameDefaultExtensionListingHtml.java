@@ -7,12 +7,16 @@ public class FileNameDefaultExtensionListingHtml extends AbstractGenerateFile{
 
 	@Override
 	public void generateFile(FileGenerateBean fileGenerateBean) {
-		fileGenerateBean.setContent(generateContentListingService(fileGenerateBean));
+		fileGenerateBean.setContent(generateContentListingHtml(fileGenerateBean));
 		
-		createSubFile(fileGenerateBean,"listagem", "listagem");
+		String firstTextLetterUpperCaseFileName = firstTextLetterUpperCase(fileGenerateBean.getFileName());
+		
+		String htmlName = "listagem".concat(firstTextLetterUpperCaseFileName);
+		
+		createSubFile(fileGenerateBean,"listagem", htmlName);
 	}
 	
-	private String generateContentListingService(FileGenerateBean fileGenerateBean) {
+	private String generateContentListingHtml(FileGenerateBean fileGenerateBean) {
 		return """
 <ui-view>
     <dc-page-header></dc-page-header>
@@ -42,7 +46,7 @@ public class FileNameDefaultExtensionListingHtml extends AbstractGenerateFile{
         </form>
     </md-content>
 </ui-view>
-				""".formatted(fileGenerateBean.getFileName());
+				""".formatted(firstTextLetterUpperCase(fileGenerateBean.getFileName()),	fileGenerateBean.getFileName());
 	}
 
 	@Override
