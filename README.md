@@ -1,7 +1,7 @@
 CODE-GENERATOR ANGULAR JS 
 
 PARA USAR BASTA SUBIR A APLICAÇÃO NO SPRING NO JAVA 21.
-EFETUAR UMA CHAMADA VIA REST : http://localhost:8080/code-generator/genarate
+EFETUAR UMA CHAMADA VIA REST POST : http://localhost:8080/code-generator/genarate
 JSON:
 {
     "filePath" : "C:\\Documentos\\desenvolvimento\\workspaces\\sources\\alfa\\estoque-alfa\\EstoqueAlfa-Parent\\EstoqueAlfaWeb-Angular\\src\\main\\webapp\\app\\estoqueAlfa\\",
