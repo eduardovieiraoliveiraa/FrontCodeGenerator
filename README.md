@@ -1,6 +1,9 @@
 CODE-GENERATOR ANGULAR JS 
 
 PARA USAR BASTA SUBIR A APLICAÇÃO NO SPRING NO JAVA 21.
+    SPRING: https://spring.io/tools
+    JAVA 21: https://www.oracle.com/br/java/technologies/downloads/
+
 EFETUAR UMA CHAMADA VIA REST POST : http://localhost:8080/code-generator/genarate
 JSON:
 {
