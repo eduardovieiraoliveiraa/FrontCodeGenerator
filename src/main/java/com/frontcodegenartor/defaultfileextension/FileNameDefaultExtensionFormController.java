@@ -80,7 +80,7 @@ public class FileNameDefaultExtensionFormController extends AbstractGenerateFile
 })();
 				""".formatted(
 						getModuleTextBlock(fileGenerateBean),
-						controllerName, controllerName,controllerName, controllerName,controllerName,
+						controllerName, controllerName,controllerName, serviceName,controllerName,
 						serviceName, serviceName,serviceName);
 	}
 

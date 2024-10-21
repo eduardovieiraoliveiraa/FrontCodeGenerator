@@ -48,7 +48,7 @@ public class FileNameDefaultExtensionResource extends AbstractGenerateFile{
 						getTextBlockModule(fileGenerateBean),
 						fileNameSufixo,
 						fileNameSufixo,
-						fileGenerateBean.getModuleName(),
+						fileGenerateBean.getModuleName().toLowerCase(),
 						separeteByHifen(fileGenerateBean.getFileName()));
 	}
 

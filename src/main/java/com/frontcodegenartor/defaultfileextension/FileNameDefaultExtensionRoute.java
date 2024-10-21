@@ -25,14 +25,14 @@ public class FileNameDefaultExtensionRoute extends AbstractGenerateFile{
 			
 			        %s.$inject = [
 			            'routerHelper',
-			            '%sConstants'
+			            '%sRouteConstants'
 			        ];
 			
 			        function %s(
 			            routerHelper,
-			            %sConstants
+			            %sRouteConstants
 			        ) {
-			            routerHelper.configureStates(%sConstants);
+			            routerHelper.configureStates(%sRouteConstants);
 			        }
 			})();
 				""".formatted(

@@ -78,10 +78,13 @@ public class FileNameDefaultExtensionRouteFactory extends AbstractGenerateFile{
 		List<String> detailsList = new ArrayList<>();
 	
 		for (String entityName : fileGenerateBean.getDetails()) {
+			fileGenerateBean.setDetailName(entityName);
 			String minDetail = """
+								   '%s/%s/form/%s/%s.min.js',
 								   '%s/%s/form/%s/listagem/listagem.min.js',
 								   '%s/%s/form/%s/dialog/dialog.min.js',
 					""".formatted(
+							fileGenerateBean.getModuleName(),fileGenerateBean.getFileName(),entityName,entityName,
 							fileGenerateBean.getModuleName(),fileGenerateBean.getFileName(),entityName,
 							fileGenerateBean.getModuleName(),fileGenerateBean.getFileName(),entityName
 							);
@@ -96,13 +99,14 @@ public class FileNameDefaultExtensionRouteFactory extends AbstractGenerateFile{
 		String fileName = fileGenerateBean.getFileName();
 		String moduleName = fileGenerateBean.getModuleName();
 		String siglaPathModule = fileGenerateBean.getSiglaPathModule();
+		String fileNameUpper = firstTextLetterUpperCase(fileName);
 		
 		return """
 			'%s': {
 		                state: '%s.%s',	
 		                config: {
 		                    url: '/%s',
-		                    templateUrl:'%s/%s/listagem/listagem.html',
+		                    templateUrl:'%s/%s/listagem/listagem%s.html',
 		                    resolve: {
 		                        loadDependencies: ['loadModulesService', function (loadModulesService) {
 		                            return loadModulesService.loadFiles(getDependencies());
@@ -114,7 +118,7 @@ public class FileNameDefaultExtensionRouteFactory extends AbstractGenerateFile{
 						fileName,
 						siglaPathModule,fileName,
 						separeteByHifen(fileName),
-						moduleName,fileName
+						moduleName,fileName,fileNameUpper
 						);
 	}
 	
@@ -122,13 +126,14 @@ public class FileNameDefaultExtensionRouteFactory extends AbstractGenerateFile{
 		String fileName = fileGenerateBean.getFileName();
 		String moduleName = fileGenerateBean.getModuleName();
 		String siglaPathModule = fileGenerateBean.getSiglaPathModule();
+		String fileNameUpper = firstTextLetterUpperCase(fileName);
 		
 		return """
 				'form': {
 		                state: '%s.%s.form',
 		                config: {
 		                    url: '/%s/:id',
-		                    templateUrl:'%s/%s/form/form.html',
+		                    templateUrl:'%s/%s/form/form%s.html',
 		                    resolve: {
 		                        loadDependencies: ['loadModulesService', function (loadModulesService) {
 		                            return loadModulesService.loadFiles(getDependencies());
@@ -139,7 +144,7 @@ public class FileNameDefaultExtensionRouteFactory extends AbstractGenerateFile{
 				""".formatted(
 						siglaPathModule,fileName,
 						separeteByHifen(fileName),
-						moduleName,fileName
+						moduleName,fileName,fileNameUpper
 						);
 	}
 	

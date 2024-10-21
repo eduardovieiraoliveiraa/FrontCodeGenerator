@@ -45,7 +45,7 @@ public class FileNameDetailExtensionResource extends AbstractDetailGenerateFile 
   })();
 				""".formatted(getModuleTextBlock(fileGenerateBean),
 						resourceName,resourceName,resourceName,resourceName,
-						fileGenerateBean.getModuleName(),
+						fileGenerateBean.getModuleName().toLowerCase(),
 						separeteByHifen(fileGenerateBean.getFileName()),
 						separeteByHifen(fileGenerateBean.getDetailName()));
 	}

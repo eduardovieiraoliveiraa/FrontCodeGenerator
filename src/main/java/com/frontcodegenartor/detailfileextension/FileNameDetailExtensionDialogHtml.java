@@ -40,7 +40,6 @@ public class FileNameDetailExtensionDialogHtml extends AbstractDetailGenerateFil
                         require="true"
                         ignore-ids-not-in="true"
                         multiple="true"
-                        multiple="true"
                         flex="100"
                         resource-name="filialResource">
                     </dc-selector-autocomplete>

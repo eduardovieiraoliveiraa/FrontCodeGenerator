@@ -20,7 +20,7 @@ public class FileNameDefaultExtensionListingHtml extends AbstractGenerateFile{
 		return """
 <ui-view>
     <dc-page-header></dc-page-header>
-    <md-content layout="row" layout-wrap layout-padding ng-controller="listagemController as listagemCtrl">
+    <md-content layout="row" layout-wrap layout-padding ng-controller="listagem%sController as listagemCtrl">
         <form name="formListagem">
 
             <div layout="row" class="action-container">

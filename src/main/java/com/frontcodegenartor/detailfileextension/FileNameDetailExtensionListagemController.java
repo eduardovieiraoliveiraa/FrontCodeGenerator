@@ -17,129 +17,47 @@ public class FileNameDetailExtensionListagemController extends AbstractDetailGen
 	
 	private String generateContentModule(FileGenerateBean fileGenerateBean) {
 		String detailFileNameSufixo = getDetailFileNameSufixo(fileGenerateBean, LISTAGEM);
-		String firstTextLetterUpperCaseDetailName = firstTextLetterUpperCase(fileGenerateBean.getDetailName());
-		String resourceName = new FileNameDetailExtensionResource().getDetailFileNameSufixo(fileGenerateBean, "");
+		String serviceName = new FileNameDetailExtensionListagemService().getDetailFileNameSufixo(fileGenerateBean, LISTAGEM);
 		
 		return """
 (function () {
     'use strict';
 
-		%s
-        .service('%s', %s);
+				%s
+        .controller('%s', %s);
 
-        %s.$inject = [
-        '%s',
-        '$stateParams',
-        'dcDialogService',
-        'dialog%sService'
+    %s.$inject = [
+        '%s'
     ];
 
     function %s(
-        %s,
-        $stateParams,
-        dcDialogService,
-        dialog%sService
+        %s
     ) {
-
-        var totalRecords = null;
-        var registrosListagemList = [];
-
         var vm = this;
-        vm.getTotalRecords = getTotalRecords;
-        vm.getRegistrosListagemList = getRegistrosListagemList;
-        vm.fillRegistros = fillRegistros;
-        vm.listingApi = {};
-        vm.novo = novo;
-        vm.editar = editar;
-        vm.deletar = deletar;
-        vm.desabilitarNovo = desabilitarNovo;
+        var service = %s;
 
-        function getTotalRecords() {
-            return totalRecords;
-        }
-         function getRegistrosListagemList() {
-            return registrosListagemList;
-        }
+        vm.novo = service.novo;
+        vm.desabilitarNovo = service.desabilitarNovo;
+        vm.getRegistrosListagemList = service.getRegistrosListagemList;
+        vm.getTotalRecords = service.getTotalRecords;
+        vm.fillRegistros = service.fillRegistros;
+        vm.deletar  = service.deletar;
+        vm.editar = service.editar;
 
-        function desabilitarNovo(){
-            return $stateParams.id === 'novo';
-        } 
-        
-        function novo(){
-            dcDialogService.show({
-                templateUrl: '%s/%s/form/%s/dialog%s/dialog%s.html',
-                controller: 'form%sController',
-                controllerAs: 'form%sCtr',
-                locals: {
-                    VO : undefined
-                }
-            }).finally(function(){
-                dialog%sService.limparModel();
-                atualizarListagem();
-            });
-        }
+        activate();
 
-        function editar(regitro) {   
-            dcDialogService.show({
-                templateUrl: 'estoqueAlfa/cluster/form/abaClusterProduto/dialogClusterProduto/dialogClusterProduto.html',
-                controller: 'dialogClusterProdutoController',
-                controllerAs: 'dialogClusterProdutoCtrl',
-                locals: {
-                    VO : regitro
-                }
-            }).finally(function(){
-                dialogClusterProdutoService.limparModel();
-                atualizarListagem();
-            });
+        function activate() {
         }
-
-        function atualizarListagem(){
-            var param = {};
-            fillRegistros(param);
-        }
-
-        function fillRegistros(param) {
-            if(desabilitarNovo()){
-                param.parentId = 0;
-            }else{
-                param.parentId = $stateParams.id;
-            }
-            
-            return %s.getPagedVO(param, function (data) {
-                registrosListagemList = data.items;
-                totalRecords = data.totalElements;
-            });
-        }
-
-        function deletar(regitro) {
-            var params = {};
-            params.parentId =  $stateParams.id;
-            params.id = regitro.id;
-            return %s.delete(params, angular.noop);
-        }
-        
     }
-})();
-				""".formatted(
+})();""".formatted(
 							getModuleTextBlock(fileGenerateBean),
 							detailFileNameSufixo,
 							detailFileNameSufixo,
 							detailFileNameSufixo,
-							resourceName,
-							firstTextLetterUpperCaseDetailName,
+							serviceName,
 							detailFileNameSufixo,
-							resourceName,//aa
-							firstTextLetterUpperCaseDetailName,
-							fileGenerateBean.getModuleName(),
-							fileGenerateBean.getFileName(),
-							fileGenerateBean.getDetailName(),
-							firstTextLetterUpperCaseDetailName,
-							firstTextLetterUpperCaseDetailName,
-							firstTextLetterUpperCaseDetailName,
-							firstTextLetterUpperCaseDetailName,
-							firstTextLetterUpperCaseDetailName,
-							resourceName,
-							resourceName
+							serviceName,
+							serviceName
 						);
 	}
 

@@ -156,11 +156,11 @@ public class FileNameDefaultExtensionFormService extends AbstractGenerateFile{
 		function getAba%s() {
             return {
                 label: '%s',
-                src: '%s/%s/form/%s/listagem/listagem.html',
+                src: '%s/%s/form/%s/listagem/listagem%s.html',
             };
         }
 				""".formatted(detailNameUpper, detailNameSepareteBySpace,
-						moduleName,fileName, detailEntity);
+						moduleName,fileName, detailEntity,detailNameUpper);
 	}
 	
 	@Override
