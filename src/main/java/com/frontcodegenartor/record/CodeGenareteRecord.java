@@ -13,4 +13,5 @@ public record CodeGenareteRecord(
 		String moduleName,
 		@NotBlank(message = "O campo Sigla Path é obrigatório.")
 		String siglaPathModule,
+		boolean linuxEnviroment,
 		List<String> detailsName) {}

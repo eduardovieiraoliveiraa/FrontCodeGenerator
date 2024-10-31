@@ -33,13 +33,20 @@ public abstract class AbstractDetailGenerateFile extends AbstractGenerateFile{
 	}
     
 	public String getFolderName(FileGenerateBean fileGenerateBean, String type) {
-		String folderNameDefault = fileGenerateBean.getFolderName()
+		if(fileGenerateBean.isLinuxEnviroment()) {
+			return fileGenerateBean.getFolderName()
+					.concat("//form")
+					.concat("//")
+					.concat(fileGenerateBean.getDetailName())
+					.concat("//")
+					.concat(type);
+		}
+		
+		return fileGenerateBean.getFolderName()
 				.concat("\\form")
 				.concat("\\")
 				.concat(fileGenerateBean.getDetailName())
 				.concat("\\")
 				.concat(type);
-		
-		return folderNameDefault;
 	};
 }

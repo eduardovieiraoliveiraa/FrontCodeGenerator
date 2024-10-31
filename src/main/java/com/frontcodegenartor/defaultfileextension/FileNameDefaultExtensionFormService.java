@@ -57,15 +57,21 @@ public class FileNameDefaultExtensionFormService extends AbstractGenerateFile{
 
         activate();
 
-        function salvar(){
-            var payLoad = getModel().main;
-
-            return resource.saveOrUpdate({id : payLoad.id},payLoad, function(data){
-                dcAlertService.emitSuccessAlertSignal('Registro Salvo com sucesso.');
-                $state.go($state.current,{id:data.id});
-                atualizarForm(data);
-            });
-        }
+		function salvar(){
+		    var payLoad = getModel().main;
+		
+		    return new Promise(function(resolve, reject) {
+		        return resource.saveOrUpdate({id : payLoad.id},payLoad, function(data){
+		            resolve();
+		
+		            dcAlertService.emitSuccessAlertSignal('Registro Salvo com sucesso.');
+		            $state.go($state.current,{id:data.id});
+		            atualizarForm(data);
+		        },function(){
+		            reject();
+		        });
+		    });
+		}
 
         function getFilter(){
             return filter;

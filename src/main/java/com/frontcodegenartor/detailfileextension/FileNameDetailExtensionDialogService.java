@@ -56,16 +56,21 @@ public class FileNameDetailExtensionDialogService extends AbstractDetailGenerate
             model = {};
         }
 
-        function salvar(){
-
-            var params = {};
-            params.parentId = $stateParams.id
-
-            resource.saveOrUpdate(params, getDto(), function(){
-                dcAlertService.emitSuccessAlertSignal('Registro Salvo com sucesso.');
-                dcDialogService.hide();
-            });
-        }
+		function salvar(){
+		    var params = {};
+		    params.parentId = $stateParams.id
+		
+		    return new Promise(function(resolve, reject) {
+		        resource.saveOrUpdate(params, getDto(), function(){
+		            dcAlertService.emitSuccessAlertSignal('Registro Salvo com sucesso.');
+		            dcDialogService.hide();
+		
+		            resolve();
+		        },function(){
+		            reject();
+		        });
+		    });
+		}
 
         function getDto(){
             var dto = getModel();

@@ -21,6 +21,11 @@ public class CodeGeneratorService {
 		FileGenerateBean fileGenerateBean = new FileGenerateBean();
 		fileGenerateBean.setFileName(entityName);
 		fileGenerateBean.setFolderName(filePath.concat("\\").concat(entityName));
+		
+		if(codeGenareteRecord.linuxEnviroment()) 
+			fileGenerateBean.setFolderName(filePath.concat("//").concat(entityName));
+		
+		fileGenerateBean.setLinuxEnviroment(codeGenareteRecord.linuxEnviroment());
 		fileGenerateBean.setModuleName(moduleName);
 		fileGenerateBean.setSiglaPathModule(codeGenareteRecord.siglaPathModule().toLowerCase());
 		fileGenerateBean.setDetails(codeGenareteRecord.detailsName());

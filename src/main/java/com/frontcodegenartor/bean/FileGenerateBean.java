@@ -11,6 +11,7 @@ public class FileGenerateBean {
 	private String moduleName;
 	private String siglaPathModule;
 	private String detailName;
+	boolean linuxEnviroment;
 
 	private List<String> details;
 
@@ -28,6 +29,14 @@ public class FileGenerateBean {
 
 	public void setDetailName(String detailName) {
 		this.detailName = detailName;
+	}
+
+	public boolean isLinuxEnviroment() {
+		return linuxEnviroment;
+	}
+
+	public void setLinuxEnviroment(boolean linuxEnviroment) {
+		this.linuxEnviroment = linuxEnviroment;
 	}
 
 	public void setModuleName(String moduleName) {
