@@ -28,11 +28,11 @@ public class FileNameDetailExtensionDialogHtml extends AbstractDetailGenerateFil
 
 <md-dialog-content layout="column" layout-wrap layout-padding class="modal-md">
     <div class="col-md-12 spaced-bottom">
-
-        <div class="col-md-12 main">
-            <form name="form">
-                <div layout="row" layout-align="start center" class="spaced-top default-min-height-div"> 
-
+    
+         <form name="form">
+			<div class="col-md-12 main">
+			
+                <div class="col-md-6">
                     <dc-selector-autocomplete
                         model="dialogCtrl.getModel().filiais"
                         label="(Seleciona ao menos uma Filial)" 
@@ -43,11 +43,11 @@ public class FileNameDetailExtensionDialogHtml extends AbstractDetailGenerateFil
                         flex="100"
                         resource-name="filialResource">
                     </dc-selector-autocomplete>
-                
                 </div>
-
-            </form>
-        </div>
+                
+			</div>
+			
+        </form>
 
         <div class="action-container">
             <dc-button 

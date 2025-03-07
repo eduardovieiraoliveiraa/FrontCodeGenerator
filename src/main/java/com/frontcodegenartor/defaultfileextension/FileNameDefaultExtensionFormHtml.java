@@ -51,7 +51,7 @@ public class FileNameDefaultExtensionFormHtml extends AbstractGenerateFile{
                  <div class="col-md-4">
                     <div class="default-crud-min-height-div" layout="row" layout-align="start end">
                         <dc-selector-autocomplete
-                            model="formCtrl.getModel().filial"
+                            model="formCtrl.getModel().main.filial"
                             label="Filial" 
                             resource-params-fn="formTabloideFilialCtr.getParamsFilial()"
                             multiple="false"
